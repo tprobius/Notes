@@ -4,7 +4,7 @@
 # Notes
 Notes app with favorite.
 
-### Study prject by TDD, MVVM, Clean architecture
+### MVVM, Clean architecture study project
 
 [User story](https://www.figma.com/file/qDHVuojUkUOkn2yWveRxKp/Notes?type=design&node-id=0-1&mode=design&t=79RMyRNU54IIRdEs-0)  
 [Workflow](https://trello.com/b/4RsUbtCX/notes)
