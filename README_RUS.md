@@ -4,7 +4,7 @@
 # Заметки
 Приложение "Заметки" с возможностью добавления в избранное.
 
-### Учебный проект по принципам TDD, MVVM, Clean architecture
+### Учебный проект на MVVM, Clean architecture
 
 [User story](https://www.figma.com/file/qDHVuojUkUOkn2yWveRxKp/Notes?type=design&node-id=0-1&mode=design&t=79RMyRNU54IIRdEs-0)  
 [Workflow](https://trello.com/b/4RsUbtCX/notes)
