@@ -11,7 +11,7 @@ Notes app with favorite.
 
 [//]: # ([Prototype in Figma]&#40;https://www.figma.com/file/qDHVuojUkUOkn2yWveRxKp/Notes?type=design&node-id=8-2&mode=design&t=79RMyRNU54IIRdEs-0&#41;)
 
-### Teck stack
+### Tech stack
 - Kotlin
 - Coroutines + Flow
 - Clean architecture
