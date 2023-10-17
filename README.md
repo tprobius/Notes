@@ -1,5 +1,7 @@
-# In progress
-### Started 13.10.2023
+# The project is on pause
+
+# ~~In progress~~  
+### ~~Started 13.10.2023~~
 
 # Notes
 Notes app with favorite.
