@@ -1,10 +1,10 @@
-# The project is on pause
-
-# ~~In progress~~  
-### ~~Started 13.10.2023~~
-
 # Notes
 Notes app with favorite.
+
+## In progress  
+Continued on 08.11.2023  
+Has been on paused since ~18.10.2023  
+Started on 13.10.2023  
 
 ### MVVM, Clean architecture study project
 
