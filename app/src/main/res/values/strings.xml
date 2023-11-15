@@ -3,4 +3,6 @@
     <string name="tab_title_1">List</string>
     <string name="tab_title_2">Favorite</string>
     <string name="add_new_note">Add new note</string>
+    <string name="favorite_note">Favorite note</string>
+    <string name="delete_note">Delete note</string>
 </resources>
