@@ -19,5 +19,4 @@ Notes app with favorite.
 - Coroutines + Flow
 - Clean architecture
 - MVVM
-- TDD
 - Room
