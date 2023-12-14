@@ -1,9 +1,9 @@
 package com.tprobius.notes.domain.usecases
 
-import com.tprobius.notes.domain.entities.Note
+import com.tprobius.notes.domain.model.Note
 import com.tprobius.notes.domain.repository.NotesDatabaseRepository
 
-class AddNewNote(
+class AddNewNoteUseCase(
     private val notesDatabaseRepository: NotesDatabaseRepository
 ) {
     suspend operator fun invoke(note: Note) {

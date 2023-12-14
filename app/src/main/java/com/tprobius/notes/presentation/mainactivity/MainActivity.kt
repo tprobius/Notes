@@ -2,27 +2,32 @@ package com.tprobius.notes.presentation.mainactivity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.tabs.TabLayoutMediator
+import com.github.terrakok.cicerone.NavigatorHolder
+import com.github.terrakok.cicerone.Router
+import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.tprobius.notes.R
-import com.tprobius.notes.databinding.ActivityMainBinding
+import com.tprobius.notes.presentation.listfragment.getListScreen
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
-    private val tabTitles = arrayOf(
-        R.string.tab_title_1,
-        R.string.tab_title_2
-    )
+    private val router: Router by inject()
+    private val navigatorHolder: NavigatorHolder by inject()
+    private val navigator = AppNavigator(this, R.id.activity_main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
-        val pagerAdapter = PagerAdapter(this)
-        val viewPager = binding.viewPager
-        viewPager.adapter = pagerAdapter
+        router.newRootScreen(getListScreen())
+    }
 
-        TabLayoutMediator(binding.tabs, viewPager) { tab, position ->
-            tab.setText(tabTitles[position])
-        }.attach()
+    override fun onResume() {
+        super.onResume()
+        navigatorHolder.setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        navigatorHolder.removeNavigator()
     }
 }
