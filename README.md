@@ -8,9 +8,11 @@ Notes app with favorite.
 
 ### MVVM, Clean architecture study project
 
-[User story](https://www.figma.com/file/qDHVuojUkUOkn2yWveRxKp/Notes?type=design&node-id=0-1&mode=design&t=79RMyRNU54IIRdEs-0)  
-[App prototype](https://www.figma.com/file/qDHVuojUkUOkn2yWveRxKp/Notes?type=design&node-id=8-2&mode=design&t=ZBlMjkuzabnh9U2p-0)  
-~~[Work flow](https://trello.com/b/4RsUbtCX/notes)~~
+[//]: # ([User story]&#40;https://www.figma.com/file/qDHVuojUkUOkn2yWveRxKp/Notes?type=design&node-id=0-1&mode=design&t=79RMyRNU54IIRdEs-0&#41;  )
+
+[//]: # ([App prototype]&#40;https://www.figma.com/file/qDHVuojUkUOkn2yWveRxKp/Notes?type=design&node-id=8-2&mode=design&t=ZBlMjkuzabnh9U2p-0&#41;  )
+
+[//]: # (~~[Work flow]&#40;https://trello.com/b/4RsUbtCX/notes&#41;~~)
 
 [//]: # ([Prototype in Figma]&#40;https://www.figma.com/file/qDHVuojUkUOkn2yWveRxKp/Notes?type=design&node-id=8-2&mode=design&t=79RMyRNU54IIRdEs-0&#41;)
 
