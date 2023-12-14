@@ -1,6 +1,6 @@
 package com.tprobius.notes.domain.repository
 
-import com.tprobius.notes.domain.entities.Note
+import com.tprobius.notes.domain.model.Note
 import kotlinx.coroutines.flow.Flow
 
 interface NotesDatabaseRepository {
