@@ -1,20 +1,48 @@
-# В процессе
-### Начат 13.10.2023
+## В работе
 
-# Заметки
-Приложение "Заметки" с возможностью добавления в избранное.
+# Notes
+Приложение Заметки со списком избранных.
 
-### Учебный проект на MVVM, Clean architecture
+### MVVM, Clean architecture project
 
-[User story](https://www.figma.com/file/qDHVuojUkUOkn2yWveRxKp/Notes?type=design&node-id=0-1&mode=design&t=79RMyRNU54IIRdEs-0)  
-[Workflow](https://trello.com/b/4RsUbtCX/notes)
+#### Описание
 
-[//]: # ([Прототип в Figma]&#40;https://www.figma.com/file/qDHVuojUkUOkn2yWveRxKp/Notes?type=design&node-id=8-2&mode=design&t=79RMyRNU54IIRdEs-0&#41;)
+Приложение для управления заметками.  
+В настоящий момент доступны следующие функции:
+  
+  - добавление новой заметки;
+  - редактирование существующей заметки;
+  - удаление заметки;
+  - добавление заметки в списко избранного.
+
+<p  align="center" >  
+    <img src="./screenshots/Screenshot_20231219_222004.png" alt="notes_list_screen" width="23%" height="auto">
+    <img src="./screenshots/Screenshot_20231219_222019.png" alt="new_note_screen" width="23%" height="auto">
+    <img src="./screenshots/Screenshot_20231219_222101.png" alt="new_note_screen" width="23%" height="auto">
+    <img src="./screenshots/Screenshot_20231219_222112.png" alt="notes_list_screen" width="23%" height="auto">  
+  </p>
+  
+  <p align="center"> 
+    <img src="./screenshots/Screenshot_20231219_222128.png" alt="add_note_to_favorite_list" width="23%" height="auto">
+    <img src="./screenshots/Screenshot_20231219_222138.png" alt="delete_note" width="23%" height="auto">
+    <img src="./screenshots/Screenshot_20231219_222143.png" alt="restore_deletion" width="23%" height="auto">
+</p>
+
 
 ### Стек технологий
 - Kotlin
 - Coroutines + Flow
 - Clean architecture
-- MVVM
-- TDD
+- MVVM + UDF
+- View binding
 - Room
+- Cicerone
+- Koin
+
+### Backlog
+
+- Добавить список избранных заметок
+- Добавить сортировку по названию / дате
+- Добавить поддержку русского языка
+- Добавить поддержку тёмной темы
+- Поменять стиль приложения
