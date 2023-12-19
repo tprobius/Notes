@@ -22,6 +22,14 @@ class NotesDatabaseRepositoryImpl(
         }.flowOn(dispatcher)
     }
 
+    override suspend fun getFavoriteNotes(): Flow<List<Note>> {
+        return flow {
+            emit(notesDao.getFavoriteNotes().map {
+                it.mapToNote()
+            })
+        }.flowOn(dispatcher)
+    }
+
     override suspend fun getNoteById(id: Long): Flow<Note> {
         return flow {
             emit(notesDao.getNoteById(id).mapToNote())

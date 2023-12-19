@@ -2,6 +2,7 @@ package com.tprobius.notes.presentation.noteslistfragment
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
+import com.tprobius.notes.R
 import com.tprobius.notes.databinding.ItemListBinding
 import com.tprobius.notes.domain.model.Note
 import java.text.SimpleDateFormat
@@ -10,7 +11,8 @@ import java.util.Date
 class NotesViewHolder(
     private var binding: ItemListBinding,
     private val onClickListener: (Note) -> Unit,
-    private val onDeleteListener: (Note) -> Unit,
+    private val onFavoriteListener: (Note) -> Unit,
+    private val onDeleteListener: (Note) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
     @SuppressLint("SimpleDateFormat")
     fun bind(note: Note) {
@@ -24,6 +26,15 @@ class NotesViewHolder(
 
         itemView.setOnClickListener {
             onClickListener(note)
+        }
+
+        binding.favoriteImageView.setOnClickListener {
+            onFavoriteListener(note)
+            if (note.isFavorite) {
+                binding.favoriteImageView.setImageResource(R.drawable.ic_favorite_filled)
+            } else {
+                binding.favoriteImageView.setImageResource(R.drawable.ic_favorite_border)
+            }
         }
 
         binding.deleteImageView.setOnClickListener {

@@ -74,6 +74,8 @@ class NotesListFragment : Fragment() {
         notesListAdapter = NotesListAdapter({
             viewModel.editNote(it)
         }, {
+            it.isFavorite = !it.isFavorite
+        }, {
             recentlyDeletedNote = it
 
             viewModel.deleteNote(it)
