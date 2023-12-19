@@ -64,7 +64,8 @@ class AddNoteFragment : Fragment() {
                 Note(
                     0,
                     binding.titleEditText.text.toString(),
-                    binding.contentEditText.text.toString()
+                    binding.contentEditText.text.toString(),
+                    System.currentTimeMillis()
                 )
             )
         }
