@@ -1,26 +1,48 @@
 ## In progress
 
 # Notes
-Notes app with favorite.
+Notes app with favorite list.
 
-[//]: # (## In progress)  
-[//]: # (Continued on 08.11.2023)  
-[//]: # (Has been on paused since ~18.10.2023)  
-[//]: # (Started on 13.10.2023)  
+### MVVM, Clean architecture project
 
-### MVVM, Clean architecture study project
+#### Description
 
-[//]: # ([User story]&#40;https://www.figma.com/file/qDHVuojUkUOkn2yWveRxKp/Notes?type=design&node-id=0-1&mode=design&t=79RMyRNU54IIRdEs-0&#41;  )
+The application allows you to manage your notes.  
+The following functions are available now:
+  
+  - adding a new note;
+  - editing an existing note;
+  - deleting a note;
+  - adding a note to the favorites list.
 
-[//]: # ([App prototype]&#40;https://www.figma.com/file/qDHVuojUkUOkn2yWveRxKp/Notes?type=design&node-id=8-2&mode=design&t=ZBlMjkuzabnh9U2p-0&#41;  )
+<p  align="center" >  
+    <img src="./screenshots/Screenshot_20231219_222004.png" alt="notes_list_screen" width="23%" height="auto">
+    <img src="./screenshots/Screenshot_20231219_222019.png" alt="new_note_screen" width="23%" height="auto">
+    <img src="./screenshots/Screenshot_20231219_222101.png" alt="new_note_screen" width="23%" height="auto">
+    <img src="./screenshots/Screenshot_20231219_222112.png" alt="notes_list_screen" width="23%" height="auto">  
+  </p>
+  
+  <p align="center"> 
+    <img src="./screenshots/Screenshot_20231219_222128.png" alt="add_note_to_favorite_list" width="23%" height="auto">
+    <img src="./screenshots/Screenshot_20231219_222138.png" alt="delete_note" width="23%" height="auto">
+    <img src="./screenshots/Screenshot_20231219_222143.png" alt="restore_deletion" width="23%" height="auto">
+</p>
 
-[//]: # (~~[Work flow]&#40;https://trello.com/b/4RsUbtCX/notes&#41;~~)
-
-[//]: # ([Prototype in Figma]&#40;https://www.figma.com/file/qDHVuojUkUOkn2yWveRxKp/Notes?type=design&node-id=8-2&mode=design&t=79RMyRNU54IIRdEs-0&#41;)
 
 ### Tech stack
 - Kotlin
 - Coroutines + Flow
 - Clean architecture
-- MVVM
+- MVVM + UDF
+- View binding
 - Room
+- Cicerone
+- Koin
+
+### Backlog
+
+- Add favorite notes screen
+- Add sorting of notes by date/title
+- Add localization support
+- Add night mode support
+- Change app style
