@@ -9,11 +9,13 @@ data class NoteDbEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val title: String,
-    val content: String
+    val content: String,
+    val timestamp: Long
 ) {
-    fun mapToNote() = Note(id, title, content)
+    fun mapToNote() = Note(id, title, content, timestamp)
 
     companion object {
-        fun mapToNoteDbEntity(note: Note) = NoteDbEntity(note.id, note.title, note.content)
+        fun mapToNoteDbEntity(note: Note) =
+            NoteDbEntity(note.id, note.title, note.content, note.timestamp)
     }
 }
