@@ -9,7 +9,5 @@ class EditNoteRouterImpl(
 ) : EditNoteRouter {
     override fun openNotesList() {
         router.navigateTo(getListScreen())
-
     }
-
 }

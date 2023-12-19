@@ -11,6 +11,7 @@ import com.tprobius.notes.databinding.FragmentListBinding
 import com.tprobius.notes.domain.model.Note
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.properties.Delegates
 
 class NotesListFragment : Fragment() {
     private var _binding: FragmentListBinding? = null
@@ -19,9 +20,9 @@ class NotesListFragment : Fragment() {
 
     private val viewModel: NotesListViewModel by viewModel()
 
-    private lateinit var notesListAdapter: NotesListAdapter
+    private var notesListAdapter by Delegates.notNull<NotesListAdapter>()
 
-    private lateinit var recentlyDeletedNote: Note
+    private var recentlyDeletedNote by Delegates.notNull<Note>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,7 +35,6 @@ class NotesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setHandleState()
         setNotesListAdapter()
         setOnAddClick()
@@ -74,7 +74,7 @@ class NotesListFragment : Fragment() {
         notesListAdapter = NotesListAdapter({
             viewModel.editNote(it)
         }, {
-            it.isFavorite = !it.isFavorite
+            viewModel.updateNote(it)
         }, {
             recentlyDeletedNote = it
 
