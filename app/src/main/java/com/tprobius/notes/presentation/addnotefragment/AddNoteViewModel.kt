@@ -28,8 +28,4 @@ class AddNoteViewModel(
             }
         }
     }
-
-//    private fun saveNewNote() {
-//        router.openNotesList()
-//    }
 }

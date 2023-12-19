@@ -2,7 +2,6 @@ package com.tprobius.notes.presentation.noteslistfragment
 
 import com.tprobius.notes.domain.model.Note
 
-
 sealed interface NotesListState {
     data object Initial : NotesListState
     data object Loading : NotesListState

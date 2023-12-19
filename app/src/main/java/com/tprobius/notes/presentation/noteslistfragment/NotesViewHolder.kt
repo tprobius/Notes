@@ -23,6 +23,7 @@ class NotesViewHolder(
         binding.contentTextView.text = note.content
         binding.dateTextView.text = format.format(date).toString()
 
+        setFavoriteIcon(note)
 
         itemView.setOnClickListener {
             onClickListener(note)
@@ -30,15 +31,20 @@ class NotesViewHolder(
 
         binding.favoriteImageView.setOnClickListener {
             onFavoriteListener(note)
-            if (note.isFavorite) {
-                binding.favoriteImageView.setImageResource(R.drawable.ic_favorite_filled)
-            } else {
-                binding.favoriteImageView.setImageResource(R.drawable.ic_favorite_border)
-            }
+            note.isFavorite = !note.isFavorite
+            setFavoriteIcon(note)
         }
 
         binding.deleteImageView.setOnClickListener {
             onDeleteListener(note)
+        }
+    }
+
+    private fun setFavoriteIcon(note: Note) {
+        if (note.isFavorite) {
+            binding.favoriteImageView.setImageResource(R.drawable.ic_favorite_filled)
+        } else {
+            binding.favoriteImageView.setImageResource(R.drawable.ic_favorite_border)
         }
     }
 }

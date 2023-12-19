@@ -2,7 +2,6 @@ package com.tprobius.notes.presentation.editnotefragment
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,9 +40,6 @@ class EditNoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getNoteById(note)
-
-        Log.d("WTF?!?!?!?!?!", "${note.id}")
-
         setHandleState()
         setOnSaveClick()
     }

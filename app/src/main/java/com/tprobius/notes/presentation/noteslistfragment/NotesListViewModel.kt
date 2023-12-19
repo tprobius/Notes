@@ -33,6 +33,18 @@ class NotesListViewModel(
         }
     }
 
+    fun updateNote(note: Note) {
+        viewModelScope.launch {
+            _state.value = NotesListState.Loading
+            try {
+                addNoteUseCase(note)
+                getAllNotes()
+            } catch (_: Exception) {
+                _state.value = NotesListState.Error
+            }
+        }
+    }
+
     fun deleteNote(note: Note) {
         viewModelScope.launch {
             _state.value = NotesListState.Loading

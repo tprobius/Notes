@@ -60,7 +60,7 @@
                 android:contentDescription="@string/favorite_note"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/title_textView"
-                app:srcCompat="@drawable/ic_favorite_border" />
+                tools:srcCompat="@drawable/ic_favorite_border" />
 
             <ImageView
                 android:id="@+id/delete_imageView"

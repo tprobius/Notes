@@ -8,6 +8,6 @@ data class Note(
     val id: Long,
     val title: String,
     val content: String,
-    var isFavorite: Boolean,
+    var isFavorite: Boolean = false,
     val timestamp: Long
 ) : Parcelable
