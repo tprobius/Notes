@@ -6,7 +6,7 @@ import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.tprobius.notes.R
-import com.tprobius.notes.presentation.listfragment.getListScreen
+import com.tprobius.notes.presentation.noteslistfragment.getListScreen
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {

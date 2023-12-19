@@ -18,8 +18,8 @@ import com.tprobius.notes.presentation.addnotefragment.AddNoteRouter
 import com.tprobius.notes.presentation.addnotefragment.AddNoteViewModel
 import com.tprobius.notes.presentation.editnotefragment.EditNoteRouter
 import com.tprobius.notes.presentation.editnotefragment.EditNoteViewModel
-import com.tprobius.notes.presentation.listfragment.NotesListRouter
-import com.tprobius.notes.presentation.listfragment.NotesListViewModel
+import com.tprobius.notes.presentation.noteslistfragment.NotesListRouter
+import com.tprobius.notes.presentation.noteslistfragment.NotesListViewModel
 import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

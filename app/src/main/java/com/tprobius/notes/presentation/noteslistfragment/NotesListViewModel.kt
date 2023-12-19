@@ -1,4 +1,4 @@
-package com.tprobius.notes.presentation.listfragment
+package com.tprobius.notes.presentation.noteslistfragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,7 @@ import com.tprobius.notes.domain.model.Note
 import com.tprobius.notes.domain.usecases.AddNewNoteUseCase
 import com.tprobius.notes.domain.usecases.DeleteNoteUseCase
 import com.tprobius.notes.domain.usecases.GetAllNotesUseCase
-import com.tprobius.notes.presentation.listfragment.NotesListState.Initial
+import com.tprobius.notes.presentation.noteslistfragment.NotesListState.Initial
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

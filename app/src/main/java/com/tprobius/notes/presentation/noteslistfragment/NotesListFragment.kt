@@ -1,4 +1,4 @@
-package com.tprobius.notes.presentation.listfragment
+package com.tprobius.notes.presentation.noteslistfragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
