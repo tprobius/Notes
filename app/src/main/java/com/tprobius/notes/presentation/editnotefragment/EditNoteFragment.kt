@@ -1,6 +1,8 @@
-package com.tprobius.notes.presentation.addnotefragment
+package com.tprobius.notes.presentation.editnotefragment
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +13,21 @@ import com.tprobius.notes.domain.model.Note
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AddNoteFragment : Fragment() {
+class EditNoteFragment : Fragment() {
     private var _binding: FragmentNoteDetailBinding? = null
     private val binding
         get() = checkNotNull(_binding) { "Binding isn't initialized" }
 
-    private val viewModel: AddNoteViewModel by viewModel()
+    private val viewModel: EditNoteViewModel by viewModel()
+
+    private lateinit var note: Note
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            note = it.note as Note
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +40,10 @@ class AddNoteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getNoteById(note)
+
+        Log.d("WTF?!?!?!?!?!", "${note.id}")
+
         setHandleState()
         setOnSaveClick()
     }
@@ -41,12 +56,12 @@ class AddNoteFragment : Fragment() {
         }
     }
 
-    private fun handleState(state: AddNoteState) {
+    private fun handleState(state: EditNoteState) {
         when (state) {
-            AddNoteState.Initial -> showInitialState()
-            AddNoteState.Loading -> showLoadingState()
-            is AddNoteState.Success -> showSuccessState(state.note)
-            AddNoteState.Error -> showErrorState()
+            EditNoteState.Initial -> showInitialState()
+            EditNoteState.Loading -> showLoadingState()
+            is EditNoteState.Success -> showSuccessState(state.note)
+            EditNoteState.Error -> showErrorState()
         }
     }
 
@@ -54,19 +69,42 @@ class AddNoteFragment : Fragment() {
 
     private fun showLoadingState() {}
 
-    private fun showSuccessState(note: Note) {}
+    private fun showSuccessState(note: Note) {
+        binding.titleEditText.setText(note.title)
+        binding.contentEditText.setText(note.content)
+    }
 
     private fun showErrorState() {}
 
     private fun setOnSaveClick() {
         binding.saveFloatingActionButton.setOnClickListener {
-            viewModel.addNewNote(
+            viewModel.saveNote(
                 Note(
-                    0,
+                    note.id,
                     binding.titleEditText.text.toString(),
                     binding.contentEditText.text.toString()
                 )
             )
+        }
+    }
+
+    companion object {
+        private const val NOTE = "note"
+
+        private var Bundle.note
+            get() =
+                when {
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> getParcelable(
+                        NOTE,
+                        Note::class.java
+                    )
+
+                    else -> @Suppress("DEPRECATION") getParcelable(NOTE) as? Note
+                }
+            set(value) = putParcelable(NOTE, value)
+
+        fun newInstance(note: Note) = EditNoteFragment().apply {
+            arguments = Bundle().apply { this.note = note }
         }
     }
 }

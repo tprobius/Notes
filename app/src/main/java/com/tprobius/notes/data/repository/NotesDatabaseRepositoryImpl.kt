@@ -22,10 +22,10 @@ class NotesDatabaseRepositoryImpl(
         }.flowOn(dispatcher)
     }
 
-    override suspend fun getNoteById(id: Long): Note {
-        return withContext(dispatcher) {
-            notesDao.getNoteById(id).mapToNote()
-        }
+    override suspend fun getNoteById(id: Long): Flow<Note> {
+        return flow {
+            emit(notesDao.getNoteById(id).mapToNote())
+        }.flowOn(dispatcher)
     }
 
     override suspend fun addNewNote(note: Note) {

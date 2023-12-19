@@ -9,10 +9,14 @@ import com.tprobius.notes.data.repository.NotesDatabaseRepositoryImpl
 import com.tprobius.notes.domain.repository.NotesDatabaseRepository
 import com.tprobius.notes.domain.usecases.AddNewNoteUseCase
 import com.tprobius.notes.domain.usecases.GetAllNotesUseCase
+import com.tprobius.notes.domain.usecases.GetNoteByIdUseCase
 import com.tprobius.notes.navigation.AddNoteRouterImpl
+import com.tprobius.notes.navigation.EditNoteRouterImpl
 import com.tprobius.notes.navigation.NotesListRouterImpl
 import com.tprobius.notes.presentation.addnotefragment.AddNoteRouter
 import com.tprobius.notes.presentation.addnotefragment.AddNoteViewModel
+import com.tprobius.notes.presentation.editnotefragment.EditNoteRouter
+import com.tprobius.notes.presentation.editnotefragment.EditNoteViewModel
 import com.tprobius.notes.presentation.listfragment.NotesListRouter
 import com.tprobius.notes.presentation.listfragment.NotesListViewModel
 import kotlinx.coroutines.Dispatchers
@@ -32,11 +36,13 @@ val databaseModule = module {
 val viewModelModule = module {
     viewModel { NotesListViewModel(get(), get()) }
     viewModel { AddNoteViewModel(get(), get()) }
+    viewModel { EditNoteViewModel(get(), get(), get()) }
 }
 
 val useCasesModule = module {
     single { GetAllNotesUseCase(notesDatabaseRepository = get()) }
     single { AddNewNoteUseCase(notesDatabaseRepository = get()) }
+    single { GetNoteByIdUseCase(notesDatabaseRepository = get()) }
 }
 
 val navigationModule = module {
@@ -46,6 +52,7 @@ val navigationModule = module {
 
     factory<NotesListRouter> { NotesListRouterImpl(get()) }
     factory<AddNoteRouter> { AddNoteRouterImpl(get()) }
+    factory<EditNoteRouter> { EditNoteRouterImpl(get()) }
 }
 
 fun provideNotesDatabase(notesApp: Application): NotesDatabase {
