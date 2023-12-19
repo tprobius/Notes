@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.snackbar.Snackbar
 import com.tprobius.notes.databinding.FragmentListBinding
 import com.tprobius.notes.domain.model.Note
 import kotlinx.coroutines.launch
@@ -20,6 +21,8 @@ class NotesListFragment : Fragment() {
 
     private lateinit var notesListAdapter: NotesListAdapter
 
+    private lateinit var recentlyDeletedNote: Note
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,6 +34,7 @@ class NotesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setHandleState()
         setNotesListAdapter()
         setOnAddClick()
@@ -69,7 +73,23 @@ class NotesListFragment : Fragment() {
     private fun setNotesListAdapter() {
         notesListAdapter = NotesListAdapter({
             viewModel.editNote(it)
-        }, {})
+        }, {
+            recentlyDeletedNote = it
+
+            viewModel.deleteNote(it)
+
+            Snackbar
+                .make(binding.root, "Note was deleted", Snackbar.LENGTH_LONG)
+                .setAction("UNDO") {
+                    Snackbar.make(
+                        binding.root,
+                        "Note successfully restored",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                    viewModel.restoreNote(recentlyDeletedNote)
+                }.show()
+        })
+
         binding.listRecyclerView.adapter = notesListAdapter
     }
 

@@ -3,6 +3,8 @@ package com.tprobius.notes.presentation.listfragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tprobius.notes.domain.model.Note
+import com.tprobius.notes.domain.usecases.AddNewNoteUseCase
+import com.tprobius.notes.domain.usecases.DeleteNoteUseCase
 import com.tprobius.notes.domain.usecases.GetAllNotesUseCase
 import com.tprobius.notes.presentation.listfragment.NotesListState.Initial
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,6 +13,8 @@ import kotlinx.coroutines.launch
 
 class NotesListViewModel(
     private val getAllNotesUseCase: GetAllNotesUseCase,
+    private val deleteNoteUseCase: DeleteNoteUseCase,
+    private val addNoteUseCase: AddNewNoteUseCase,
     private val router: NotesListRouter
 ) : ViewModel() {
     private var _state: MutableStateFlow<NotesListState> = MutableStateFlow(Initial)
@@ -24,6 +28,30 @@ class NotesListViewModel(
                     _state.value = NotesListState.Success(it)
                 }
             } catch (e: Exception) {
+                _state.value = NotesListState.Error
+            }
+        }
+    }
+
+    fun deleteNote(note: Note) {
+        viewModelScope.launch {
+            _state.value = NotesListState.Loading
+            try {
+                deleteNoteUseCase(note)
+                getAllNotes()
+            } catch (e: Exception) {
+                _state.value = NotesListState.Error
+            }
+        }
+    }
+
+    fun restoreNote(note: Note) {
+        viewModelScope.launch {
+            _state.value = NotesListState.Loading
+            try {
+                addNoteUseCase(note)
+                getAllNotes()
+            } catch (_: Exception) {
                 _state.value = NotesListState.Error
             }
         }
