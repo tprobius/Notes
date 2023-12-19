@@ -12,6 +12,9 @@ interface NotesDao {
     @Query("SELECT * FROM notes")
     suspend fun getAllNotes(): List<NoteDbEntity>
 
+    @Query("SELECT * FROM notes WHERE isFavorite")
+    suspend fun getFavoriteNotes(): List<NoteDbEntity>
+
     @Query("SELECT * FROM notes WHERE id = :id")
     suspend fun getNoteById(id: Long): NoteDbEntity
 

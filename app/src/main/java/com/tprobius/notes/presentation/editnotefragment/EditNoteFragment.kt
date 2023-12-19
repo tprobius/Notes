@@ -83,6 +83,7 @@ class EditNoteFragment : Fragment() {
                     note.id,
                     binding.titleEditText.text.toString(),
                     binding.contentEditText.text.toString(),
+                    note.isFavorite,
                     System.currentTimeMillis()
                 )
             )

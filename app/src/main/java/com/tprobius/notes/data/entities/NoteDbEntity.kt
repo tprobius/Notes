@@ -10,12 +10,13 @@ data class NoteDbEntity(
     val id: Long = 0,
     val title: String,
     val content: String,
+    val isFavorite: Boolean,
     val timestamp: Long
 ) {
-    fun mapToNote() = Note(id, title, content, timestamp)
+    fun mapToNote() = Note(id, title, content, isFavorite, timestamp)
 
     companion object {
         fun mapToNoteDbEntity(note: Note) =
-            NoteDbEntity(note.id, note.title, note.content, note.timestamp)
+            NoteDbEntity(note.id, note.title, note.content, note.isFavorite, note.timestamp)
     }
 }

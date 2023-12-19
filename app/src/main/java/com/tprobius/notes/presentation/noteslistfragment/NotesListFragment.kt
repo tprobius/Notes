@@ -1,4 +1,4 @@
-package com.tprobius.notes.presentation.listfragment
+package com.tprobius.notes.presentation.noteslistfragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -73,6 +73,8 @@ class NotesListFragment : Fragment() {
     private fun setNotesListAdapter() {
         notesListAdapter = NotesListAdapter({
             viewModel.editNote(it)
+        }, {
+            it.isFavorite = !it.isFavorite
         }, {
             recentlyDeletedNote = it
 
