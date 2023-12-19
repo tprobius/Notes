@@ -46,3 +46,4 @@ The following functions are available now:
 - Add localization support
 - Add night mode support
 - Change app style
+- Сover the application with tests
