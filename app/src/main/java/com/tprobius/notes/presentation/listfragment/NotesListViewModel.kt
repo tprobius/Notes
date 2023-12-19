@@ -29,17 +29,11 @@ class NotesListViewModel(
         }
     }
 
-    fun getNotes(): List<Note> {
-        var result = emptyList<Note>()
-        viewModelScope.launch {
-            getAllNotesUseCase().collect {
-                result = it
-            }
-        }
-        return result
-    }
-
     fun addNewNote() {
         router.openAddNote()
+    }
+
+    fun editNote(note: Note) {
+        router.openEditNote(note)
     }
 }

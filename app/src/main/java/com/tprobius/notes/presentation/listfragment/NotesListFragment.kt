@@ -1,7 +1,6 @@
 package com.tprobius.notes.presentation.listfragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,11 +20,6 @@ class NotesListFragment : Fragment() {
 
     private lateinit var notesListAdapter: NotesListAdapter
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        viewModel.getAllNotes()
-//    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,8 +34,6 @@ class NotesListFragment : Fragment() {
         setHandleState()
         setNotesListAdapter()
         setOnAddClick()
-
-        Log.d("WTF?!?!?!?", "${viewModel.getNotes()}")
     }
 
     private fun setHandleState() {
@@ -75,7 +67,9 @@ class NotesListFragment : Fragment() {
     private fun showErrorState() {}
 
     private fun setNotesListAdapter() {
-        notesListAdapter = NotesListAdapter({}, {})
+        notesListAdapter = NotesListAdapter({
+            viewModel.editNote(it)
+        }, {})
         binding.listRecyclerView.adapter = notesListAdapter
     }
 
