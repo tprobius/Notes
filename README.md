@@ -51,3 +51,4 @@ The following functions are available now:
 - [ ] Add night mode support
 - [ ] Change app style
 - [ ] Сover the application with tests
+- [ ] Fix navigation backstak 
