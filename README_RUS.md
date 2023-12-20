@@ -11,21 +11,25 @@
 В настоящий момент доступны следующие функции:
   
   - добавление новой заметки;
+  - просмотр списка всех заметок;
   - редактирование существующей заметки;
-  - удаление заметки;
-  - добавление заметки в списко избранного.
+  - удаление / восстановление заметки;
+  - добавление заметки в списко избранного;
+  - просмотр списка избранных заметок.
 
 <p  align="center" >  
-    <img src="./screenshots/Screenshot_20231219_222004.png" alt="notes_list_screen" width="23%" height="auto">
-    <img src="./screenshots/Screenshot_20231219_222019.png" alt="new_note_screen" width="23%" height="auto">
-    <img src="./screenshots/Screenshot_20231219_222101.png" alt="new_note_screen" width="23%" height="auto">
-    <img src="./screenshots/Screenshot_20231219_222112.png" alt="notes_list_screen" width="23%" height="auto">  
+    <img src="./screenshots/Screenshot_20231220_164713.png" alt="notes_list_screen" width="19%" height="auto">
+    <img src="./screenshots/Screenshot_20231220_164734.png" alt="new_note_screen" width="19%" height="auto">
+    <img src="./screenshots/Screenshot_20231220_164759.png" alt="new_note_screen" width="19%" height="auto">
+    <img src="./screenshots/Screenshot_20231220_164814.png" alt="notes_list_screen" width="19%" height="auto">
+    <img src="./screenshots/Screenshot_20231220_164838.png" alt="notes_list_screen" width="19%" height="auto">
   </p>
   
   <p align="center"> 
-    <img src="./screenshots/Screenshot_20231219_222128.png" alt="add_note_to_favorite_list" width="23%" height="auto">
-    <img src="./screenshots/Screenshot_20231219_222138.png" alt="delete_note" width="23%" height="auto">
-    <img src="./screenshots/Screenshot_20231219_222143.png" alt="restore_deletion" width="23%" height="auto">
+    <img src="./screenshots/Screenshot_20231220_164910.png" alt="add_note_to_favorite_list" width="19%" height="auto">
+    <img src="./screenshots/Screenshot_20231220_164929.png" alt="delete_note" width="19%" height="auto">
+    <img src="./screenshots/Screenshot_20231220_164952.png" alt="restore_deletion" width="19%" height="auto">
+    <img src="./screenshots/Screenshot_20231220_165018.png" alt="restore_deletion" width="19%" height="auto">
 </p>
 
 
@@ -41,9 +45,9 @@
 
 ### Backlog
 
-- Добавить список избранных заметок
-- Добавить сортировку по названию / дате
-- Добавить поддержку русского языка
-- Добавить поддержку тёмной темы
-- Поменять стиль приложения
-- Покрыть приложение тестами
+- [x] Добавить список избранных заметок
+- [ ] Добавить сортировку по названию / дате
+- [ ] Добавить поддержку русского языка
+- [ ] Добавить поддержку тёмной темы
+- [ ] Поменять стиль приложения
+- [ ] Покрыть приложение тестами
