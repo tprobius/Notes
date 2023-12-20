@@ -6,6 +6,7 @@ import com.tprobius.notes.domain.model.Note
 import com.tprobius.notes.domain.usecases.AddNewNoteUseCase
 import com.tprobius.notes.domain.usecases.DeleteNoteUseCase
 import com.tprobius.notes.domain.usecases.GetAllNotesUseCase
+import com.tprobius.notes.domain.usecases.GetFavoriteNotesUseCase
 import com.tprobius.notes.presentation.noteslistfragment.NotesListState.Initial
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,6 +14,7 @@ import kotlinx.coroutines.launch
 
 class NotesListViewModel(
     private val getAllNotesUseCase: GetAllNotesUseCase,
+    private val getFavoriteNotesUseCase: GetFavoriteNotesUseCase,
     private val deleteNoteUseCase: DeleteNoteUseCase,
     private val addNoteUseCase: AddNewNoteUseCase,
     private val router: NotesListRouter
@@ -20,7 +22,7 @@ class NotesListViewModel(
     private var _state: MutableStateFlow<NotesListState> = MutableStateFlow(Initial)
     val state: StateFlow<NotesListState> = _state
 
-    fun getAllNotes() {
+    suspend fun getAllNotes() {
         viewModelScope.launch {
             _state.value = NotesListState.Loading
             try {
@@ -30,43 +32,53 @@ class NotesListViewModel(
             } catch (e: Exception) {
                 _state.value = NotesListState.Error
             }
-        }
+        }.join()
     }
 
-    fun updateNote(note: Note) {
+    suspend fun getFavoriteNotes() {
+        viewModelScope.launch {
+            _state.value = NotesListState.Loading
+            try {
+                getFavoriteNotesUseCase().collect {
+                    _state.value = NotesListState.Success(it)
+                }
+            } catch (e: Exception) {
+                _state.value = NotesListState.Error
+            }
+        }.join()
+    }
+
+    suspend fun updateNote(note: Note) {
         viewModelScope.launch {
             _state.value = NotesListState.Loading
             try {
                 addNoteUseCase(note)
-                getAllNotes()
             } catch (_: Exception) {
                 _state.value = NotesListState.Error
             }
-        }
+        }.join()
     }
 
-    fun deleteNote(note: Note) {
+    suspend fun deleteNote(note: Note) {
         viewModelScope.launch {
             _state.value = NotesListState.Loading
             try {
                 deleteNoteUseCase(note)
-                getAllNotes()
             } catch (e: Exception) {
                 _state.value = NotesListState.Error
             }
-        }
+        }.join()
     }
 
-    fun restoreNote(note: Note) {
+    suspend fun restoreNote(note: Note) {
         viewModelScope.launch {
             _state.value = NotesListState.Loading
             try {
                 addNoteUseCase(note)
-                getAllNotes()
             } catch (_: Exception) {
                 _state.value = NotesListState.Error
             }
-        }
+        }.join()
     }
 
     fun addNewNote() {
