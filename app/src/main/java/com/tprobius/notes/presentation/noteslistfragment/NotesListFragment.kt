@@ -4,16 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
+import com.tprobius.notes.R
 import com.tprobius.notes.databinding.FragmentListBinding
 import com.tprobius.notes.domain.model.Note
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
 
-class NotesListFragment : Fragment() {
+class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var _binding: FragmentListBinding? = null
     private val binding
         get() = checkNotNull(_binding) { "Binding isn't initialized" }
@@ -23,6 +26,8 @@ class NotesListFragment : Fragment() {
     private var notesListAdapter by Delegates.notNull<NotesListAdapter>()
 
     private var recentlyDeletedNote by Delegates.notNull<Note>()
+
+    private var spinnerValue by Delegates.notNull<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,13 +40,26 @@ class NotesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        spinnerValue = ALL
         setHandleState()
         setNotesListAdapter()
+        setOnFilterClick()
         setOnAddClick()
     }
 
+    private fun setOnFilterClick() {
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.filter,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.filterSpinner.adapter = adapter
+            binding.filterSpinner.onItemSelectedListener = this@NotesListFragment
+        }
+    }
+
     private fun setHandleState() {
-        viewModel.getAllNotes()
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.collect {
                 handleState(it)
@@ -74,11 +92,23 @@ class NotesListFragment : Fragment() {
         notesListAdapter = NotesListAdapter({
             viewModel.editNote(it)
         }, {
-            viewModel.updateNote(it)
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.updateNote(it)
+                when (spinnerValue) {
+                    ALL -> viewModel.getAllNotes()
+                    else -> viewModel.getFavoriteNotes()
+                }
+            }
         }, {
             recentlyDeletedNote = it
 
-            viewModel.deleteNote(it)
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.deleteNote(it)
+                when (spinnerValue) {
+                    ALL -> viewModel.getAllNotes()
+                    else -> viewModel.getFavoriteNotes()
+                }
+            }
 
             Snackbar
                 .make(binding.root, "Note was deleted", Snackbar.LENGTH_LONG)
@@ -88,7 +118,13 @@ class NotesListFragment : Fragment() {
                         "Note successfully restored",
                         Snackbar.LENGTH_SHORT
                     ).show()
-                    viewModel.restoreNote(recentlyDeletedNote)
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        viewModel.restoreNote(recentlyDeletedNote)
+                        when (spinnerValue) {
+                            ALL -> viewModel.getAllNotes()
+                            else -> viewModel.getFavoriteNotes()
+                        }
+                    }
                 }.show()
         })
 
@@ -99,5 +135,33 @@ class NotesListFragment : Fragment() {
         binding.floatingActionButton.setOnClickListener {
             viewModel.addNewNote()
         }
+    }
+
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        when (position) {
+            0 -> viewLifecycleOwner.lifecycleScope.launch {
+                spinnerValue = ALL
+                viewModel.getAllNotes()
+            }
+
+            else -> {
+                viewLifecycleOwner.lifecycleScope.launch {
+                    spinnerValue = FAVORITE
+                    viewModel.getFavoriteNotes()
+                }
+            }
+        }
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            viewModel.getAllNotes()
+//        }
+    }
+
+    companion object {
+        const val ALL = "all"
+        const val FAVORITE = "favorite"
     }
 }

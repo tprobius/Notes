@@ -7,4 +7,9 @@
     <string name="delete_note">Delete note</string>
     <string name="title">Title</string>
     <string name="content">Content</string>
+
+    <string-array name="filter">
+        <item>All</item>
+        <item>Favorite</item>
+    </string-array>
 </resources>

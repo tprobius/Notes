@@ -10,6 +10,7 @@ import com.tprobius.notes.domain.repository.NotesDatabaseRepository
 import com.tprobius.notes.domain.usecases.AddNewNoteUseCase
 import com.tprobius.notes.domain.usecases.DeleteNoteUseCase
 import com.tprobius.notes.domain.usecases.GetAllNotesUseCase
+import com.tprobius.notes.domain.usecases.GetFavoriteNotesUseCase
 import com.tprobius.notes.domain.usecases.GetNoteByIdUseCase
 import com.tprobius.notes.navigation.AddNoteRouterImpl
 import com.tprobius.notes.navigation.EditNoteRouterImpl
@@ -35,13 +36,14 @@ val databaseModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { NotesListViewModel(get(), get(), get(), get()) }
+    viewModel { NotesListViewModel(get(), get(), get(), get(), get()) }
     viewModel { AddNoteViewModel(get(), get()) }
     viewModel { EditNoteViewModel(get(), get(), get()) }
 }
 
 val useCasesModule = module {
     single { GetAllNotesUseCase(notesDatabaseRepository = get()) }
+    single { GetFavoriteNotesUseCase(notesDatabaseRepository = get()) }
     single { AddNewNoteUseCase(notesDatabaseRepository = get()) }
     single { GetNoteByIdUseCase(notesDatabaseRepository = get()) }
     single { DeleteNoteUseCase(notesDatabaseRepository = get()) }
