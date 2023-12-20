@@ -12,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.tprobius.notes.R
 import com.tprobius.notes.databinding.FragmentListBinding
 import com.tprobius.notes.domain.model.Note
+import com.tprobius.notes.presentation.noteslistfragment.noteslistadapter.NotesListAdapter
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates

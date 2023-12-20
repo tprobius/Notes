@@ -1,4 +1,4 @@
-package com.tprobius.notes.presentation.noteslistfragment
+package com.tprobius.notes.presentation.noteslistfragment.noteslistadapter
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView

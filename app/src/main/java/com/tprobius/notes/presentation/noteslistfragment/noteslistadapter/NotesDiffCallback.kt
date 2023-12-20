@@ -1,4 +1,4 @@
-package com.tprobius.notes.presentation.noteslistfragment
+package com.tprobius.notes.presentation.noteslistfragment.noteslistadapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.tprobius.notes.domain.model.Note
