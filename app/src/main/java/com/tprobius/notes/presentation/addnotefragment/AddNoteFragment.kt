@@ -35,9 +35,7 @@ class AddNoteFragment : Fragment() {
 
     private fun setHandleState() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.state.collect {
-                handleState(it)
-            }
+            viewModel.state.observe(viewLifecycleOwner, ::handleState)
         }
     }
 

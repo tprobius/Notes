@@ -42,6 +42,7 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         spinnerValue = ALL
+
         setHandleState()
         setNotesListAdapter()
         setOnFilterClick()
@@ -62,9 +63,7 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun setHandleState() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.state.collect {
-                handleState(it)
-            }
+            viewModel.state.observe(viewLifecycleOwner, ::handleState)
         }
     }
 
@@ -90,46 +89,52 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun showErrorState() {}
 
     private fun setNotesListAdapter() {
-        notesListAdapter = NotesListAdapter({
-            viewModel.editNote(it)
-        }, {
-            viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.updateNote(it)
-                when (spinnerValue) {
-                    ALL -> viewModel.getAllNotes()
-                    else -> viewModel.getFavoriteNotes()
-                }
-            }
-        }, {
-            recentlyDeletedNote = it
-
-            viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.deleteNote(it)
-                when (spinnerValue) {
-                    ALL -> viewModel.getAllNotes()
-                    else -> viewModel.getFavoriteNotes()
-                }
-            }
-
-            Snackbar
-                .make(binding.root, "Note was deleted", Snackbar.LENGTH_LONG)
-                .setAction("UNDO") {
-                    Snackbar.make(
-                        binding.root,
-                        "Note successfully restored",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                    viewLifecycleOwner.lifecycleScope.launch {
-                        viewModel.restoreNote(recentlyDeletedNote)
-                        when (spinnerValue) {
-                            ALL -> viewModel.getAllNotes()
-                            else -> viewModel.getFavoriteNotes()
-                        }
-                    }
-                }.show()
-        })
+        notesListAdapter = NotesListAdapter(
+            { viewModel.editNote(it) },
+            { setOnFavoriteClick(it) },
+            { setOnDeleteClick(it) }
+        )
 
         binding.listRecyclerView.adapter = notesListAdapter
+    }
+
+    private fun setOnFavoriteClick(it: Note) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.updateNote(it.id, !it.isFavorite)
+            updateNotesList()
+        }
+    }
+
+    private fun setOnDeleteClick(it: Note) {
+        recentlyDeletedNote = it
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.deleteNote(it)
+            updateNotesList()
+        }
+        showSnackBar()
+    }
+
+    private fun updateNotesList() {
+        when (spinnerValue) {
+            ALL -> viewModel.getAllNotes()
+            else -> viewModel.getFavoriteNotes()
+        }
+    }
+
+    private fun showSnackBar() {
+        Snackbar
+            .make(binding.root, "Note was deleted", Snackbar.LENGTH_LONG)
+            .setAction("UNDO") {
+                Snackbar.make(
+                    binding.root,
+                    "Note successfully restored",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+                viewLifecycleOwner.lifecycleScope.launch {
+                    viewModel.restoreNote(recentlyDeletedNote)
+                    updateNotesList()
+                }
+            }.show()
     }
 
     private fun setOnAddClick() {
@@ -138,28 +143,28 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
     }
 
-
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         when (position) {
-            0 -> viewLifecycleOwner.lifecycleScope.launch {
-                spinnerValue = ALL
-                viewModel.getAllNotes()
-            }
-
-            else -> {
-                viewLifecycleOwner.lifecycleScope.launch {
-                    spinnerValue = FAVORITE
-                    viewModel.getFavoriteNotes()
-                }
-            }
+            0 -> setOnAllFilter()
+            else -> setOnFavoriteFilter()
         }
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            viewModel.getAllNotes()
-//        }
+    private fun setOnAllFilter() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            spinnerValue = ALL
+            viewModel.getAllNotes()
+        }
     }
+
+    private fun setOnFavoriteFilter() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            spinnerValue = FAVORITE
+            viewModel.getFavoriteNotes()
+        }
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
 
     companion object {
         const val ALL = "all"

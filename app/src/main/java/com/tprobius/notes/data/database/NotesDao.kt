@@ -21,6 +21,9 @@ interface NotesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addNewNote(note: NoteDbEntity)
 
+    @Query("UPDATE notes SET isFavorite = :isFavorite WHERE id = :id")
+    fun setNoteFavorite(id: Long, isFavorite: Boolean)
+
     @Delete
     suspend fun deleteNote(note: NoteDbEntity)
 }
