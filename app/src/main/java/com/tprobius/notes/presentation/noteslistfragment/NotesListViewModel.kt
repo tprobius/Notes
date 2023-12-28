@@ -1,82 +1,72 @@
 package com.tprobius.notes.presentation.noteslistfragment
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tprobius.notes.domain.model.Note
 import com.tprobius.notes.domain.usecases.AddNewNoteUseCase
 import com.tprobius.notes.domain.usecases.DeleteNoteUseCase
 import com.tprobius.notes.domain.usecases.GetAllNotesUseCase
-import com.tprobius.notes.domain.usecases.GetFavoriteNotesUseCase
-import com.tprobius.notes.presentation.noteslistfragment.NotesListState.Initial
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import com.tprobius.notes.domain.usecases.SetNoteFavoriteUseCase
 import kotlinx.coroutines.launch
 
 class NotesListViewModel(
     private val getAllNotesUseCase: GetAllNotesUseCase,
-    private val getFavoriteNotesUseCase: GetFavoriteNotesUseCase,
     private val deleteNoteUseCase: DeleteNoteUseCase,
     private val addNoteUseCase: AddNewNoteUseCase,
+    private val setNoteFavoriteUseCase: SetNoteFavoriteUseCase,
     private val router: NotesListRouter
 ) : ViewModel() {
-    private var _state: MutableStateFlow<NotesListState> = MutableStateFlow(Initial)
-    val state: StateFlow<NotesListState> = _state
+    private var _state: MutableLiveData<NotesListState> = MutableLiveData()
+    val state: LiveData<NotesListState> = _state
 
-    suspend fun getAllNotes() {
+    fun getNotesList(filter: String) {
         viewModelScope.launch {
-            _state.value = NotesListState.Loading
+            _state.postValue(NotesListState.Loading)
             try {
-                getAllNotesUseCase().collect {
-                    _state.value = NotesListState.Success(it)
+                getAllNotesUseCase().let { list ->
+                    if (filter == FAVORITE) {
+                        _state.postValue(NotesListState.Success(list.filter { it.isFavorite }))
+                    } else {
+                        _state.postValue(NotesListState.Success(list))
+                    }
                 }
             } catch (e: Exception) {
-                _state.value = NotesListState.Error
+                _state.postValue(NotesListState.Error)
             }
-        }.join()
+        }
     }
 
-    suspend fun getFavoriteNotes() {
+    suspend fun updateNote(id: Long, isFavorite: Boolean) {
         viewModelScope.launch {
-            _state.value = NotesListState.Loading
+            _state.postValue(NotesListState.Loading)
             try {
-                getFavoriteNotesUseCase().collect {
-                    _state.value = NotesListState.Success(it)
-                }
-            } catch (e: Exception) {
-                _state.value = NotesListState.Error
-            }
-        }.join()
-    }
-
-    suspend fun updateNote(note: Note) {
-        viewModelScope.launch {
-            _state.value = NotesListState.Loading
-            try {
-                addNoteUseCase(note)
+                setNoteFavoriteUseCase(id, isFavorite)
             } catch (_: Exception) {
-                _state.value = NotesListState.Error
+                _state.postValue(NotesListState.Error)
             }
         }.join()
     }
 
     suspend fun deleteNote(note: Note) {
         viewModelScope.launch {
-            _state.value = NotesListState.Loading
+            _state.postValue(NotesListState.Loading)
             try {
                 deleteNoteUseCase(note)
             } catch (e: Exception) {
-                _state.value = NotesListState.Error
+                _state.postValue(NotesListState.Error)
             }
         }.join()
     }
 
     suspend fun restoreNote(note: Note) {
         viewModelScope.launch {
-            _state.value = NotesListState.Loading
+            _state.postValue(NotesListState.Loading)
             try {
                 addNoteUseCase(note)
             } catch (_: Exception) {
-                _state.value = NotesListState.Error
+                _state.postValue(NotesListState.Error)
             }
         }.join()
     }
@@ -87,5 +77,9 @@ class NotesListViewModel(
 
     fun editNote(note: Note) {
         router.openEditNote(note)
+    }
+
+    companion object {
+        const val FAVORITE = "favorite"
     }
 }

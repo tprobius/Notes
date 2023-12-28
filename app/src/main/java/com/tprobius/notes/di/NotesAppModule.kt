@@ -12,6 +12,7 @@ import com.tprobius.notes.domain.usecases.DeleteNoteUseCase
 import com.tprobius.notes.domain.usecases.GetAllNotesUseCase
 import com.tprobius.notes.domain.usecases.GetFavoriteNotesUseCase
 import com.tprobius.notes.domain.usecases.GetNoteByIdUseCase
+import com.tprobius.notes.domain.usecases.SetNoteFavoriteUseCase
 import com.tprobius.notes.navigation.AddNoteRouterImpl
 import com.tprobius.notes.navigation.EditNoteRouterImpl
 import com.tprobius.notes.navigation.NotesListRouterImpl
@@ -46,6 +47,7 @@ val useCasesModule = module {
     single { GetFavoriteNotesUseCase(notesDatabaseRepository = get()) }
     single { AddNewNoteUseCase(notesDatabaseRepository = get()) }
     single { GetNoteByIdUseCase(notesDatabaseRepository = get()) }
+    single { SetNoteFavoriteUseCase(notesDatabaseRepository = get()) }
     single { DeleteNoteUseCase(notesDatabaseRepository = get()) }
 }
 
