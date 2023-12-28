@@ -62,6 +62,7 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun setHandleState() {
+        viewModel.getNotesList(spinnerValue)
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.observe(viewLifecycleOwner, ::handleState)
         }
@@ -101,7 +102,7 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun setOnFavoriteClick(it: Note) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.updateNote(it.id, !it.isFavorite)
-            updateNotesList()
+            viewModel.getNotesList(spinnerValue)
         }
     }
 
@@ -109,16 +110,9 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
         recentlyDeletedNote = it
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.deleteNote(it)
-            updateNotesList()
+            viewModel.getNotesList(spinnerValue)
         }
         showSnackBar()
-    }
-
-    private fun updateNotesList() {
-        when (spinnerValue) {
-            ALL -> viewModel.getAllNotes()
-            else -> viewModel.getFavoriteNotes()
-        }
     }
 
     private fun showSnackBar() {
@@ -132,7 +126,7 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 ).show()
                 viewLifecycleOwner.lifecycleScope.launch {
                     viewModel.restoreNote(recentlyDeletedNote)
-                    updateNotesList()
+                    viewModel.getNotesList(spinnerValue)
                 }
             }.show()
     }
@@ -153,14 +147,14 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun setOnAllFilter() {
         viewLifecycleOwner.lifecycleScope.launch {
             spinnerValue = ALL
-            viewModel.getAllNotes()
+            viewModel.getNotesList(spinnerValue)
         }
     }
 
     private fun setOnFavoriteFilter() {
         viewLifecycleOwner.lifecycleScope.launch {
             spinnerValue = FAVORITE
-            viewModel.getFavoriteNotes()
+            viewModel.getNotesList(spinnerValue)
         }
     }
 

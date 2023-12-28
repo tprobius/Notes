@@ -8,13 +8,11 @@ import com.tprobius.notes.domain.model.Note
 import com.tprobius.notes.domain.usecases.AddNewNoteUseCase
 import com.tprobius.notes.domain.usecases.DeleteNoteUseCase
 import com.tprobius.notes.domain.usecases.GetAllNotesUseCase
-import com.tprobius.notes.domain.usecases.GetFavoriteNotesUseCase
 import com.tprobius.notes.domain.usecases.SetNoteFavoriteUseCase
 import kotlinx.coroutines.launch
 
 class NotesListViewModel(
     private val getAllNotesUseCase: GetAllNotesUseCase,
-    private val getFavoriteNotesUseCase: GetFavoriteNotesUseCase,
     private val deleteNoteUseCase: DeleteNoteUseCase,
     private val addNoteUseCase: AddNewNoteUseCase,
     private val setNoteFavoriteUseCase: SetNoteFavoriteUseCase,
@@ -23,25 +21,16 @@ class NotesListViewModel(
     private var _state: MutableLiveData<NotesListState> = MutableLiveData()
     val state: LiveData<NotesListState> = _state
 
-    fun getAllNotes() {
+    fun getNotesList(filter: String) {
         viewModelScope.launch {
             _state.postValue(NotesListState.Loading)
             try {
-                getAllNotesUseCase().let {
-                    _state.postValue(NotesListState.Success(it))
-                }
-            } catch (e: Exception) {
-                _state.postValue(NotesListState.Error)
-            }
-        }
-    }
-
-    fun getFavoriteNotes() {
-        viewModelScope.launch {
-            _state.postValue(NotesListState.Loading)
-            try {
-                getFavoriteNotesUseCase().let {
-                    _state.postValue(NotesListState.Success(it))
+                getAllNotesUseCase().let { list ->
+                    if (filter == FAVORITE) {
+                        _state.postValue(NotesListState.Success(list.filter { it.isFavorite }))
+                    } else {
+                        _state.postValue(NotesListState.Success(list))
+                    }
                 }
             } catch (e: Exception) {
                 _state.postValue(NotesListState.Error)
@@ -88,5 +77,9 @@ class NotesListViewModel(
 
     fun editNote(note: Note) {
         router.openEditNote(note)
+    }
+
+    companion object {
+        const val FAVORITE = "favorite"
     }
 }

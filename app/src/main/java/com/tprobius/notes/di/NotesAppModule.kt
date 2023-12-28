@@ -37,7 +37,7 @@ val databaseModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { NotesListViewModel(get(), get(), get(), get(), get(), get()) }
+    viewModel { NotesListViewModel(get(), get(), get(), get(), get()) }
     viewModel { AddNoteViewModel(get(), get()) }
     viewModel { EditNoteViewModel(get(), get(), get()) }
 }
