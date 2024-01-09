@@ -16,4 +16,5 @@ class NotesListRouterImpl(
     override fun openEditNote(note: Note) {
         router.navigateTo(getEditNoteScreen(note))
     }
+
 }
