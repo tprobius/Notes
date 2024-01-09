@@ -46,7 +46,7 @@ The following functions are available now:
 ### Backlog
 
 - [x] Add favorite notes list
-- [ ] Add sorting of notes by date/title __IN PROGRESS__
+- [x] Add sorting of notes by date/title
 - [ ] Add localization support __IN PROGRESS__
 - [ ] Add night mode support __IN PROGRESS__
 - [ ] Change app style
