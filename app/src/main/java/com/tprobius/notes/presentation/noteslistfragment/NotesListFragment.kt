@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.sidesheet.SideSheetDialog
@@ -85,7 +86,23 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun showSuccessState(notesList: List<Note>) {
         viewLifecycleOwner.lifecycleScope.launch {
-            notesListAdapter.submitList(notesList)
+            notesListAdapter.submitList(
+                when (sortingOrder) {
+                    ASCENDING -> {
+                        when (orderType) {
+                            DATE -> notesList.sortedBy { it.title.lowercase() }
+                            else -> notesList.sortedBy { it.timestamp }
+                        }
+                    }
+
+                    else -> {
+                        when (orderType) {
+                            DATE -> notesList.sortedByDescending { it.title.lowercase() }
+                            else -> notesList.sortedByDescending { it.timestamp }
+                        }
+                    }
+                }
+            )
         }
     }
 
@@ -93,27 +110,29 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun setNotesListAdapter() {
         notesListAdapter = NotesListAdapter(
-            { viewModel.editNote(it) },
-            { setOnFavoriteClick(it) },
-            { setOnDeleteClick(it) }
+            { note -> viewModel.editNote(note) },
+            { note -> setOnFavoriteClick(note) },
+            { note -> setOnDeleteClick(note) }
         )
 
         binding.listRecyclerView.adapter = notesListAdapter
     }
 
-    private fun setOnFavoriteClick(it: Note) {
+    private fun setOnFavoriteClick(note: Note) {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.updateNote(it.id, !it.isFavorite)
+            viewModel.updateNote(note.id, !note.isFavorite)
             viewModel.getNotesList(spinnerValue)
         }
     }
 
-    private fun setOnDeleteClick(it: Note) {
-        recentlyDeletedNote = it
+    private fun setOnDeleteClick(note: Note) {
+        recentlyDeletedNote = note
+
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.deleteNote(it)
+            viewModel.deleteNote(note)
             viewModel.getNotesList(spinnerValue)
         }
+
         showSnackBar()
     }
 
@@ -144,7 +163,57 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
             val sideSheetDialog = SideSheetDialog(requireContext())
             sideSheetDialog.setContentView(R.layout.fragment_settings)
 
+            setOrderType(sideSheetDialog)
+            setSortingOrder(sideSheetDialog)
+
+            setOnOrderTypeClick(sideSheetDialog)
+            setOnSortingOrderClick(sideSheetDialog)
+
             sideSheetDialog.show()
+        }
+    }
+
+    private fun setOrderType(sideSheetDialog: SideSheetDialog) {
+        when (orderType) {
+            DATE -> sideSheetDialog.findViewById<RadioButton>(R.id.date_radioButton)?.isChecked =
+                true
+
+            else -> sideSheetDialog.findViewById<RadioButton>(R.id.title_radioButton)?.isChecked =
+                true
+        }
+    }
+
+    private fun setSortingOrder(sideSheetDialog: SideSheetDialog) {
+        when (sortingOrder) {
+            ASCENDING -> sideSheetDialog.findViewById<RadioButton>(R.id.ascending_radioButton)?.isChecked =
+                true
+
+            else -> sideSheetDialog.findViewById<RadioButton>(R.id.descending_radioButton)?.isChecked =
+                true
+        }
+    }
+
+    private fun setOnOrderTypeClick(sideSheetDialog: SideSheetDialog) {
+        sideSheetDialog.findViewById<RadioButton>(R.id.date_radioButton)?.setOnClickListener {
+            orderType = DATE
+            viewModel.getNotesList(spinnerValue)
+        }
+
+        sideSheetDialog.findViewById<RadioButton>(R.id.title_radioButton)?.setOnClickListener {
+            orderType = TITLE
+            viewModel.getNotesList(spinnerValue)
+        }
+    }
+
+    private fun setOnSortingOrderClick(sideSheetDialog: SideSheetDialog) {
+        sideSheetDialog.findViewById<RadioButton>(R.id.ascending_radioButton)?.setOnClickListener {
+            sortingOrder = ASCENDING
+            viewModel.getNotesList(spinnerValue)
+        }
+
+        sideSheetDialog.findViewById<RadioButton>(R.id.descending_radioButton)?.setOnClickListener {
+            sortingOrder = DESCENDING
+            viewModel.getNotesList(spinnerValue)
         }
     }
 
@@ -156,17 +225,13 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun setOnAllFilter() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            spinnerValue = ALL
-            viewModel.getNotesList(spinnerValue)
-        }
+        spinnerValue = ALL
+        viewModel.getNotesList(spinnerValue)
     }
 
     private fun setOnFavoriteFilter() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            spinnerValue = FAVORITE
-            viewModel.getNotesList(spinnerValue)
-        }
+        spinnerValue = FAVORITE
+        viewModel.getNotesList(spinnerValue)
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -174,5 +239,14 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
     companion object {
         const val ALL = "all"
         const val FAVORITE = "favorite"
+
+        private const val DATE = "date"
+        private const val TITLE = "title"
+
+        private const val ASCENDING = "ascending"
+        private const val DESCENDING = "descending"
+
+        var orderType = TITLE
+        var sortingOrder = ASCENDING
     }
 }

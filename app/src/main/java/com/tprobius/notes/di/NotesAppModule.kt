@@ -16,14 +16,12 @@ import com.tprobius.notes.domain.usecases.SetNoteFavoriteUseCase
 import com.tprobius.notes.navigation.AddNoteRouterImpl
 import com.tprobius.notes.navigation.EditNoteRouterImpl
 import com.tprobius.notes.navigation.NotesListRouterImpl
-import com.tprobius.notes.navigation.SettingsRouterImpl
 import com.tprobius.notes.presentation.addnotefragment.AddNoteRouter
 import com.tprobius.notes.presentation.addnotefragment.AddNoteViewModel
 import com.tprobius.notes.presentation.editnotefragment.EditNoteRouter
 import com.tprobius.notes.presentation.editnotefragment.EditNoteViewModel
 import com.tprobius.notes.presentation.noteslistfragment.NotesListRouter
 import com.tprobius.notes.presentation.noteslistfragment.NotesListViewModel
-import com.tprobius.notes.presentation.settingsfragment.SettingsRouter
 import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -61,7 +59,6 @@ val navigationModule = module {
     factory<NotesListRouter> { NotesListRouterImpl(get()) }
     factory<AddNoteRouter> { AddNoteRouterImpl(get()) }
     factory<EditNoteRouter> { EditNoteRouterImpl(get()) }
-    factory<SettingsRouter> { SettingsRouterImpl(get()) }
 }
 
 fun provideNotesDatabase(notesApp: Application): NotesDatabase {

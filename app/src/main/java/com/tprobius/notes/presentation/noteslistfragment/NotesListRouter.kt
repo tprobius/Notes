@@ -6,6 +6,4 @@ interface NotesListRouter {
     fun openAddNote()
 
     fun openEditNote(note: Note)
-
-    fun openSettings()
 }
