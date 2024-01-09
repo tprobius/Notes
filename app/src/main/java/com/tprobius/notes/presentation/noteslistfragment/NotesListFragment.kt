@@ -8,6 +8,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.sidesheet.SideSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.tprobius.notes.R
 import com.tprobius.notes.databinding.FragmentListBinding
@@ -47,6 +48,7 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
         setNotesListAdapter()
         setOnFilterClick()
         setOnAddClick()
+        setOnSettingsClick()
     }
 
     private fun setOnFilterClick() {
@@ -134,6 +136,15 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun setOnAddClick() {
         binding.floatingActionButton.setOnClickListener {
             viewModel.addNewNote()
+        }
+    }
+
+    private fun setOnSettingsClick() {
+        binding.settingsImageButton.setOnClickListener {
+            val sideSheetDialog = SideSheetDialog(requireContext())
+            sideSheetDialog.setContentView(R.layout.fragment_settings)
+
+            sideSheetDialog.show()
         }
     }
 

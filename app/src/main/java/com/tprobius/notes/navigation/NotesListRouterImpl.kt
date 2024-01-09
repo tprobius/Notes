@@ -5,6 +5,7 @@ import com.tprobius.notes.domain.model.Note
 import com.tprobius.notes.presentation.addnotefragment.getAddNoteScreen
 import com.tprobius.notes.presentation.editnotefragment.getEditNoteScreen
 import com.tprobius.notes.presentation.noteslistfragment.NotesListRouter
+import com.tprobius.notes.presentation.settingsfragment.getSettingsScreen
 
 class NotesListRouterImpl(
     private val router: Router
@@ -15,5 +16,9 @@ class NotesListRouterImpl(
 
     override fun openEditNote(note: Note) {
         router.navigateTo(getEditNoteScreen(note))
+    }
+
+    override fun openSettings() {
+        router.replaceScreen(getSettingsScreen())
     }
 }

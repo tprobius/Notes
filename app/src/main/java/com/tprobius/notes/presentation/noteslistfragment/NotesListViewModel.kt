@@ -79,6 +79,10 @@ class NotesListViewModel(
         router.openEditNote(note)
     }
 
+    fun settings() {
+        router.openSettings()
+    }
+
     companion object {
         const val FAVORITE = "favorite"
     }
