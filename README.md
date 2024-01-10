@@ -50,6 +50,7 @@ The following functions are available now:
 - [x] Add localization support depends on system language
 - [ ] Add localization support depends on app language __IN PROGRESS__
 - [ ] Add night mode support __IN PROGRESS__
+- [ ] Add saving sorting settings between application launching
 - [ ] Change app style
 - [ ] Сover the application with tests
 - [ ] Fix navigation backstak 
