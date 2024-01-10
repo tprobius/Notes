@@ -35,7 +35,7 @@ The following functions are available now:
 
 ### Tech stack
 - Kotlin
-- Coroutines + Flow
+- Coroutines
 - Clean architecture
 - MVVM + UDF
 - View binding
