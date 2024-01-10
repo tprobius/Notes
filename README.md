@@ -47,7 +47,8 @@ The following functions are available now:
 
 - [x] Add favorite notes list
 - [x] Add sorting of notes by date/title
-- [ ] Add localization support __IN PROGRESS__
+- [x] Add localization support depends on system language
+- [ ] Add localization support depends on app language __IN PROGRESS__
 - [ ] Add night mode support __IN PROGRESS__
 - [ ] Change app style
 - [ ] Сover the application with tests
