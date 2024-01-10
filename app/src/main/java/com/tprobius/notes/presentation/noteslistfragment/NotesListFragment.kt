@@ -90,14 +90,14 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 when (sortingOrder) {
                     ASCENDING -> {
                         when (orderType) {
-                            DATE -> notesList.sortedBy { it.title.lowercase() }
+                            TITLE -> notesList.sortedBy { it.title.lowercase() }
                             else -> notesList.sortedBy { it.timestamp }
                         }
                     }
 
                     else -> {
                         when (orderType) {
-                            DATE -> notesList.sortedByDescending { it.title.lowercase() }
+                            TITLE -> notesList.sortedByDescending { it.title.lowercase() }
                             else -> notesList.sortedByDescending { it.timestamp }
                         }
                     }
@@ -246,7 +246,7 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
         private const val ASCENDING = "ascending"
         private const val DESCENDING = "descending"
 
-        var orderType = TITLE
-        var sortingOrder = ASCENDING
+        var orderType = DATE
+        var sortingOrder = DESCENDING
     }
 }
