@@ -85,83 +85,6 @@
 
     </RadioGroup>
 
-    <!--&lt;!&ndash;    <TextView&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:id="@+id/orderByDate_textView"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_width="0dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_marginStart="32dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_marginTop="8dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:text="@string/date"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintEnd_toStartOf="@+id/date_radioButton"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintTop_toBottomOf="@+id/order_textView" />&ndash;&gt;-->
-
-    <!--&lt;!&ndash;    <RadioButton&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:id="@+id/date_radioButton"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_width="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintBottom_toBottomOf="@+id/orderByDate_textView"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintTop_toTopOf="@+id/orderByDate_textView" />&ndash;&gt;-->
-
-    <!--&lt;!&ndash;    <TextView&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:id="@+id/orderByTitle_textView"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_width="0dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_marginStart="32dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_marginTop="8dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:text="@string/title"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintEnd_toStartOf="@+id/title_radioButton"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintTop_toBottomOf="@+id/orderByDate_textView" />&ndash;&gt;-->
-
-    <!--&lt;!&ndash;    <RadioButton&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:id="@+id/title_radioButton"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_width="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintBottom_toBottomOf="@+id/orderByTitle_textView"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintTop_toTopOf="@+id/orderByTitle_textView" />&ndash;&gt;-->
-
-    <!--&lt;!&ndash;    <TextView&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:id="@+id/orderAscending_textView"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_width="0dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_marginStart="32dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_marginTop="8dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:text="@string/ascending"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintEnd_toStartOf="@+id/asc_radioButton"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintTop_toBottomOf="@+id/orderByTitle_textView" />&ndash;&gt;-->
-
-
-    <!--&lt;!&ndash;    <RadioButton&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:id="@+id/asc_radioButton"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_width="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintBottom_toBottomOf="@+id/orderAscending_textView"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintTop_toTopOf="@+id/orderAscending_textView" />&ndash;&gt;-->
-
-    <!--&lt;!&ndash;    <TextView&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:id="@+id/orderDescending_textView"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_width="0dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_marginStart="32dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_marginTop="8dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:text="@string/descending"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintEnd_toStartOf="@+id/desc_radioButton"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintTop_toBottomOf="@+id/orderAscending_textView" />&ndash;&gt;-->
-
-    <!--&lt;!&ndash;    <RadioButton&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:id="@+id/desc_radioButton"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_width="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintBottom_toBottomOf="@+id/orderDescending_textView"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;        app:layout_constraintTop_toTopOf="@+id/orderDescending_textView" />&ndash;&gt;-->
-
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/divider1"
         android:layout_width="match_parent"
@@ -198,6 +121,7 @@
             android:id="@+id/english_radioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:layoutDirection="rtl"
             android:text="@string/english" />
 
@@ -205,6 +129,7 @@
             android:id="@+id/spanish_radioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:layoutDirection="rtl"
             android:text="@string/spanish" />
 
@@ -212,67 +137,11 @@
             android:id="@+id/russian_radioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:layoutDirection="rtl"
             android:text="@string/russian" />
 
     </RadioGroup>
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/english_textView"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="32dp"-->
-    <!--        android:layout_marginTop="8dp"-->
-    <!--        android:text="@string/english"-->
-    <!--        app:layout_constraintEnd_toStartOf="@+id/english_radioButton"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/language_textView" />-->
-
-    <!--    <RadioButton-->
-    <!--        android:id="@+id/english_radioButton"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@+id/english_textView"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/english_textView" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/spanish_textView"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="32dp"-->
-    <!--        android:layout_marginTop="8dp"-->
-    <!--        android:text="@string/spanish"-->
-    <!--        app:layout_constraintEnd_toStartOf="@+id/spanish_radioButton"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/english_textView" />-->
-
-    <!--    <RadioButton-->
-    <!--        android:id="@+id/spanish_radioButton"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@+id/spanish_textView"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/spanish_textView" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/russian_textView"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="32dp"-->
-    <!--        android:layout_marginTop="8dp"-->
-    <!--        android:text="@string/russian"-->
-    <!--        app:layout_constraintEnd_toStartOf="@+id/russian_radioButton"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/spanish_textView" />-->
-
-    <!--    <RadioButton-->
-    <!--        android:id="@+id/russian_radioButton"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@+id/russian_textView"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/russian_textView" />-->
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/divider2"
@@ -287,6 +156,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:enabled="false"
         android:text="@string/night_mode"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

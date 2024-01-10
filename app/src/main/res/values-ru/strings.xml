@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Заметки</string>
+    <string name="add_new_note">Добавить новую заметку</string>
+    <string name="favorite_note">Избранная заметка</string>
+    <string name="delete_note">Удалить заметку</string>
+    <string name="title">Название</string>
+    <string name="content">Содержание</string>
+    <string name="settings">Настройки</string>
+    <string name="order_by">Сортировать</string>
+    <string name="date">По дате</string>
+    <string name="ascending">По возрастанию</string>
+    <string name="descending">По убыванию</string>
+    <string name="language">Язык</string>
+    <string name="english">English</string>
+    <string name="spanish">Español</string>
+    <string name="russian">Русский</string>
+    <string name="night_mode">Тёмная тема</string>
+
+    <string-array name="filter">
+        <item>Все</item>
+        <item>Избранное</item>
+    </string-array>
+</resources>
