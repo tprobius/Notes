@@ -35,7 +35,7 @@
 
 ### Стек технологий
 - Kotlin
-- Coroutines + Flow
+- Coroutines
 - Clean architecture
 - MVVM + UDF
 - View binding
