@@ -15,6 +15,9 @@
     <string name="spanish">Español</string>
     <string name="russian">Русский</string>
     <string name="night_mode">Night mode</string>
+    <string name="note_was_deleted">Note was deleted</string>
+    <string name="undo">UNDO</string>
+    <string name="note_successfully_restored">Note successfully restored</string>
 
     <string-array name="filter">
         <item>All</item>
