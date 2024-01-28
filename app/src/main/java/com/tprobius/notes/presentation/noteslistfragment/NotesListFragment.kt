@@ -138,11 +138,11 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun showSnackBar() {
         Snackbar
-            .make(binding.root, "Note was deleted", Snackbar.LENGTH_LONG)
-            .setAction("UNDO") {
+            .make(binding.root, getString(R.string.note_was_deleted), Snackbar.LENGTH_LONG)
+            .setAction(getString(R.string.undo)) {
                 Snackbar.make(
                     binding.root,
-                    "Note successfully restored",
+                    getString(R.string.note_successfully_restored),
                     Snackbar.LENGTH_SHORT
                 ).show()
                 viewLifecycleOwner.lifecycleScope.launch {
