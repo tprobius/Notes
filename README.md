@@ -1,4 +1,5 @@
-## In progress
+## On pause
+## ~~In progress~~
 
 # Notes
 Notes app with favorite list.
