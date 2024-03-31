@@ -18,6 +18,9 @@
     <string name="note_was_deleted">Note was deleted</string>
     <string name="undo">UNDO</string>
     <string name="note_successfully_restored">Note successfully restored</string>
+    <string name="error_message">Something went wrong.\nPlease try again</string>
+    <string name="error">Error</string>
+    <string name="try_again">Try again</string>
 
     <string-array name="filter">
         <item>All</item>

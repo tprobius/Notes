@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.sidesheet.SideSheetDialog
@@ -51,6 +52,7 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
         setOnFilterClick()
         setOnAddClick()
         setOnSettingsClick()
+        setOnTryAgainClick()
     }
 
     private fun setOnFilterClick() {
@@ -81,11 +83,17 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
     }
 
-    private fun showInitialState() {}
+    private fun showInitialState() {
+        setViewsVisibility()
+    }
 
-    private fun showLoadingState() {}
+    private fun showLoadingState() {
+        setViewsVisibility(progressBarVisibility = true)
+    }
 
     private fun showSuccessState(notesList: List<Note>) {
+        setViewsVisibility(listRecyclerViewVisibility = true, floatingActionButtonVisibility = true)
+
         viewLifecycleOwner.lifecycleScope.launch {
             notesListAdapter.submitList(
                 when (sortingOrder) {
@@ -107,7 +115,29 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
     }
 
-    private fun showErrorState() {}
+    private fun showErrorState() {
+        setViewsVisibility(
+            errorImageViewVisibility = true,
+            errorTextViewVisibility = true,
+            tryAgainButtonVisibility = true
+        )
+    }
+
+    private fun setViewsVisibility(
+        progressBarVisibility: Boolean = false,
+        errorImageViewVisibility: Boolean = false,
+        errorTextViewVisibility: Boolean = false,
+        tryAgainButtonVisibility: Boolean = false,
+        listRecyclerViewVisibility: Boolean = false,
+        floatingActionButtonVisibility: Boolean = false
+    ) {
+        binding.progressBar.isVisible = progressBarVisibility
+        binding.errorImageView.isVisible = errorImageViewVisibility
+        binding.errorTextView.isVisible = errorTextViewVisibility
+        binding.tryAgainButton.isVisible = tryAgainButtonVisibility
+        binding.listRecyclerView.isVisible = listRecyclerViewVisibility
+        binding.floatingActionButton.isVisible = floatingActionButtonVisibility
+    }
 
     private fun setNotesListAdapter() {
         notesListAdapter = NotesListAdapter(
@@ -233,6 +263,12 @@ class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun setOnFavoriteFilter() {
         spinnerValue = FAVORITE
         viewModel.getNotesList(spinnerValue)
+    }
+
+    private fun setOnTryAgainClick() {
+        binding.tryAgainButton.setOnClickListener {
+            viewModel.getNotesList(spinnerValue)
+        }
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
