@@ -18,6 +18,7 @@ class NotesListViewModel(
     private val setNoteFavoriteUseCase: SetNoteFavoriteUseCase,
     private val router: NotesListRouter
 ) : ViewModel() {
+
     private var _state: MutableLiveData<NotesListState> = MutableLiveData()
     val state: LiveData<NotesListState> = _state
 
@@ -72,11 +73,11 @@ class NotesListViewModel(
     }
 
     fun addNewNote() {
-        router.openAddNote()
+        router.openAddNoteScreen()
     }
 
     fun editNote(note: Note) {
-        router.openEditNote(note)
+        router.openEditNoteScreen(note)
     }
 
     companion object {

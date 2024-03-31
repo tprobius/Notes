@@ -10,6 +10,7 @@ import com.tprobius.notes.presentation.noteslistfragment.getListScreen
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
+
     private val router: Router by inject()
     private val navigatorHolder: NavigatorHolder by inject()
     private val navigator = AppNavigator(this, R.id.activity_main)

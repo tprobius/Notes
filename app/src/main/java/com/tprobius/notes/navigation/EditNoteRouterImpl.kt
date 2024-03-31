@@ -7,7 +7,8 @@ import com.tprobius.notes.presentation.noteslistfragment.getListScreen
 class EditNoteRouterImpl(
     private val router: Router
 ) : EditNoteRouter {
-    override fun openNotesList() {
+
+    override fun openNotesListScreen() {
         router.navigateTo(getListScreen())
     }
 }

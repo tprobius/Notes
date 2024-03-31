@@ -14,6 +14,7 @@ class EditNoteViewModel(
     private val addNewNoteUseCase: AddNewNoteUseCase,
     private val router: EditNoteRouter
 ) : ViewModel() {
+
     private var _state: MutableLiveData<EditNoteState> = MutableLiveData()
     val state: LiveData<EditNoteState> = _state
 
@@ -35,7 +36,7 @@ class EditNoteViewModel(
             try {
                 addNewNoteUseCase(note)
                 _state.value = EditNoteState.Success(note)
-                router.openNotesList()
+                router.openNotesListScreen()
             } catch (_: Exception) {
                 _state.value = EditNoteState.Error
             }

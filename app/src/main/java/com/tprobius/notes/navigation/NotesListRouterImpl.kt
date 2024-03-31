@@ -9,11 +9,12 @@ import com.tprobius.notes.presentation.noteslistfragment.NotesListRouter
 class NotesListRouterImpl(
     private val router: Router
 ) : NotesListRouter {
-    override fun openAddNote() {
+
+    override fun openAddNoteScreen() {
         router.navigateTo(getAddNoteScreen())
     }
 
-    override fun openEditNote(note: Note) {
+    override fun openEditNoteScreen(note: Note) {
         router.navigateTo(getEditNoteScreen(note))
     }
 

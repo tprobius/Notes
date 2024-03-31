@@ -14,6 +14,7 @@ class NotesViewHolder(
     private val onFavoriteListener: (Note) -> Unit,
     private val onDeleteListener: (Note) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
+
     @SuppressLint("SimpleDateFormat")
     fun bind(note: Note) {
         val date = Date(note.timestamp)

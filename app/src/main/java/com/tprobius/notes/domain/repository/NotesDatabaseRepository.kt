@@ -3,6 +3,7 @@ package com.tprobius.notes.domain.repository
 import com.tprobius.notes.domain.model.Note
 
 interface NotesDatabaseRepository {
+
     suspend fun getAllNotes(): List<Note>
 
     suspend fun getFavoriteNotes(): List<Note>

@@ -20,6 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates
 
 class NotesListFragment : Fragment(), AdapterView.OnItemSelectedListener {
+
     private var _binding: FragmentListBinding? = null
     private val binding
         get() = checkNotNull(_binding) { "Binding isn't initialized" }

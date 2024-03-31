@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddNoteFragment : Fragment() {
+
     private var _binding: FragmentNoteDetailBinding? = null
     private val binding
         get() = checkNotNull(_binding) { "Binding isn't initialized" }

@@ -12,6 +12,7 @@ class AddNoteViewModel(
     private val addNewNoteUseCase: AddNewNoteUseCase,
     private val router: AddNoteRouter
 ) : ViewModel() {
+
     private var _state: MutableLiveData<AddNoteState> = MutableLiveData()
     val state: LiveData<AddNoteState> = _state
 
@@ -21,7 +22,7 @@ class AddNoteViewModel(
             try {
                 addNewNoteUseCase(note)
                 _state.postValue(AddNoteState.Success(note))
-                router.openNotesList()
+                router.openNotesListScreen()
             } catch (_: Exception) {
                 _state.postValue(AddNoteState.Error)
             }

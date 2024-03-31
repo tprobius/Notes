@@ -9,6 +9,7 @@ import com.tprobius.notes.data.entities.NoteDbEntity
 
 @Dao
 interface NotesDao {
+
     @Query("SELECT * FROM notes")
     suspend fun getAllNotes(): List<NoteDbEntity>
 

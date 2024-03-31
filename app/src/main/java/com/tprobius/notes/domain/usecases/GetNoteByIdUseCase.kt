@@ -6,6 +6,7 @@ import com.tprobius.notes.domain.repository.NotesDatabaseRepository
 class GetNoteByIdUseCase(
     private val notesDatabaseRepository: NotesDatabaseRepository
 ) {
+
     suspend operator fun invoke(id: Long): Note {
         return notesDatabaseRepository.getNoteById(id)
     }

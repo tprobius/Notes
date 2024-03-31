@@ -11,6 +11,7 @@ class NotesDatabaseRepositoryImpl(
     private val notesDao: NotesDao,
     private val dispatcher: CoroutineDispatcher
 ) : NotesDatabaseRepository {
+
     override suspend fun getAllNotes(): List<Note> {
         return withContext(dispatcher) {
             notesDao.getAllNotes().map { it.mapToNote() }

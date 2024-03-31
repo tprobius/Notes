@@ -13,6 +13,7 @@ data class NoteDbEntity(
     val isFavorite: Boolean,
     val timestamp: Long
 ) {
+
     fun mapToNote() = Note(id, title, content, isFavorite, timestamp)
 
     companion object {
