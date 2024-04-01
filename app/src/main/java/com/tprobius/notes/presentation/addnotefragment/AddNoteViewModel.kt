@@ -16,12 +16,16 @@ class AddNoteViewModel(
     private var _state: MutableLiveData<AddNoteState> = MutableLiveData()
     val state: LiveData<AddNoteState> = _state
 
+    init {
+        _state.postValue(AddNoteState.Initial)
+    }
+
     fun addNewNote(note: Note) {
         viewModelScope.launch {
-            _state.postValue(AddNoteState.Loading)
+            _state.postValue(AddNoteState.Error)
             try {
                 addNewNoteUseCase(note)
-                _state.postValue(AddNoteState.Success(note))
+                _state.postValue(AddNoteState.Success)
                 router.openNotesListScreen()
             } catch (_: Exception) {
                 _state.postValue(AddNoteState.Error)
