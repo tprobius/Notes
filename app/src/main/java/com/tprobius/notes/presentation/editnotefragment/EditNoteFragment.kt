@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.tprobius.notes.databinding.FragmentNoteDetailBinding
@@ -60,16 +61,33 @@ class EditNoteFragment : Fragment() {
         }
     }
 
-    private fun showInitialState() {}
+    private fun showInitialState() {
+        setViewsVisibility()
+    }
 
-    private fun showLoadingState() {}
+    private fun showLoadingState() {
+        setViewsVisibility(progressBarVisibility = true)
+    }
 
     private fun showSuccessState(note: Note) {
+        setViewsVisibility(
+            titleEditTextVisibility = true,
+            materialDividerVisibility = true,
+            contentEditTextVisibility = true,
+            saveFloatingActionButtonVisibility = true
+        )
+
         binding.titleEditText.setText(note.title)
         binding.contentEditText.setText(note.content)
     }
 
-    private fun showErrorState() {}
+    private fun showErrorState() {
+        setViewsVisibility(
+            errorImageViewVisibility = true,
+            errorTextViewVisibility = true,
+            tryAgainButtonVisibility = true
+        )
+    }
 
     private fun setOnSaveClick() {
         binding.saveFloatingActionButton.setOnClickListener {
@@ -83,6 +101,26 @@ class EditNoteFragment : Fragment() {
                 )
             )
         }
+    }
+
+    private fun setViewsVisibility(
+        progressBarVisibility: Boolean = false,
+        errorImageViewVisibility: Boolean = false,
+        errorTextViewVisibility: Boolean = false,
+        tryAgainButtonVisibility: Boolean = false,
+        titleEditTextVisibility: Boolean = false,
+        materialDividerVisibility: Boolean = false,
+        contentEditTextVisibility: Boolean = false,
+        saveFloatingActionButtonVisibility: Boolean = false
+    ) {
+        binding.progressBar.isVisible = progressBarVisibility
+        binding.errorImageView.isVisible = errorImageViewVisibility
+        binding.errorTextView.isVisible = errorTextViewVisibility
+        binding.tryAgainButton.isVisible = tryAgainButtonVisibility
+        binding.titleEditText.isVisible = titleEditTextVisibility
+        binding.materialDivider.isVisible = materialDividerVisibility
+        binding.contentEditText.isVisible = contentEditTextVisibility
+        binding.saveFloatingActionButton.isVisible = saveFloatingActionButtonVisibility
     }
 
     companion object {

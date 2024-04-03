@@ -18,6 +18,9 @@
     <string name="note_was_deleted">Заметка удалена</string>
     <string name="undo">ОТМЕНИТЬ</string>
     <string name="note_successfully_restored">Заметка восстановлена</string>
+    <string name="error_message">Что-то пошло не так.\nПопробуйте ещё раз</string>
+    <string name="error">Ошибка</string>
+    <string name="try_again">Обновить</string>
 
     <string-array name="filter">
         <item>Все</item>
