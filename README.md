@@ -1,5 +1,6 @@
-## On pause
-## ~~In progress~~
+## In progress
+[Project board](https://github.com/users/tprobius/projects/2).  
+[Project prototype](https://www.figma.com/file/qDHVuojUkUOkn2yWveRxKp/Notes?type=design&node-id=8-2&mode=design).
 
 # Notes
 Notes app with favorite list.
