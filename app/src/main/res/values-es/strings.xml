@@ -18,9 +18,6 @@
     <string name="note_was_deleted">Note was deleted</string>
     <string name="undo">UNDO</string>
     <string name="note_successfully_restored">Note successfully restored</string>
-    <string name="error_message">Algo ha ido mal.\nPor favor, inténtalo de nuevo más tarde</string>
-    <string name="error">Error</string>
-    <string name="try_again">Actualizar</string>
 
     <string-array name="filter">
         <item>All</item>
